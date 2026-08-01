@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flashcards</title>
+    <meta name="author" content="Tymon" />
+    <meta name="description" content="A flashcard study tool" />
+    <meta
+      name="keywords"
+      content="study aids, flashcards, learning materials"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./vendor/normalize.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body class="page">
+    <header class="header">
+      <h1 class="header__title">
+        <a class="header__link" href="#">Flash Cards</a>
+      </h1>
+      <nav class="header__nav">
+        <ul class="nav__links">
+          <li class="nav__item">
+            <a class="nav__link" href="#">Decks</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#">About</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="page__main-content">
+      <section class="carousel">
+        <h2 class="carousel__title">Math &middot; 1/10</h2>
+        <div class="carousel__row">
+          <button
+            class="carousel__btn carousel__btn_type_left carousel__btn_disabled"
+            type="button"
+            aria-label="Previous card"
+          ></button>
+          <div class="carousel__card">
+            <p class="carousel__card-text">What is HTML?</p>
+          </div>
+          <button
+            class="carousel__btn carousel__btn_type_right"
+            type="button"
+            aria-label="Next card"
+          ></button>
+        </div>
+        <button
+          class="carousel__btn carousel__btn_type_flip"
+          type="button"
+          aria-label="Flip card"
+        ></button>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__text">© 2026 Tymon</p>
+    </footer>
+    <script src="./assets/js/index.js" type="module"></script>
+  </body>
+</html>
+ 
