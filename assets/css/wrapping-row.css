@@ -1,0 +1,9 @@
+.wrapping-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 20px;
+}
+
+.wrapping-row__display-contents {
+  display: contents;
+}

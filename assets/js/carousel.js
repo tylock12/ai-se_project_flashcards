@@ -1,84 +1,76 @@
-import { decks } from "./decks.js";
-import { hexToString,removeColorClasses } from "./colors.js"
+function renderCarouselView(cards, deckName) {
+  let currentIndex = 0;
+  let isFlipped = false;
 
-function renderCarouselView(deck) {
-  
-    let currentIndex = 0;
-    let showingQuestion = true;
+  const carouselEl = document.querySelector(".carousel");
+  const titleEl = carouselEl.querySelector(".carousel__title");
+  const leftBtn = carouselEl.querySelector(".carousel__btn_type_left");
+  const rightBtn = carouselEl.querySelector(".carousel__btn_type_right");
+  const carouselImageEl = carouselEl.querySelector(".carousel__image");
 
-    const color = hexToString(deck.color);
-    const carousel = document.querySelector(".carousel");
-    carousel.style.display = "flex";
+  function disableButton(buttonEl) {
+    buttonEl.classList.add("carousel__btn_disabled");
+    buttonEl.disabled = true;
+  }
+  function enableButton(buttonEl) {
+    buttonEl.classList.remove("carousel__btn_disabled");
+    buttonEl.removeAttribute("disabled");
+  }
 
-    const carouselTitle = document.querySelector(".carousel__title");
-    const carouselCard = document.querySelector(".carousel__card");
-    const carouselCardText = document.querySelector(".carousel__card-text");
-    const leftButton = document.querySelector(".carousel__btn_type_left");
-    const rightButton = document.querySelector(".carousel__btn_type_right");
-    const carouselFlipButton = document.querySelector(".carousel__btn_type_flip");
-
-    function getCarouselTitleString() {
-        return `${deck.name} · ${currentIndex + 1}/${deck.cards.length}`;
-    }
-
-    function updateDisplay() {
-        const currentCard = deck.cards[currentIndex];
-
-    if (showingQuestion) {
-        carouselCardText.textContent = currentCard.question;
-        carouselCard.classList.remove("carousel__card_color_white");    
+  function updateArrows() {
+    if (currentIndex === 0) {
+      disableButton(leftBtn);
     } else {
-        carouselCardText.textContent = currentCard.answer;
-        carouselCard.classList.add("carousel__card_color_white");
-    }        
-    
-    carouselTitle.textContent = getCarouselTitleString();
-
-        leftButton.disabled = currentIndex === 0;
-        rightButton.disabled = currentIndex === deck.cards.length - 1;
-
-    leftButton.classList.toggle(
-        "carousel__btn_disabled",
-        leftButton.disabled
-);
-
-    rightButton.classList.toggle(
-        "carousel__btn_disabled",
-        rightButton.disabled
-);
+      enableButton(leftBtn);
     }
-    
-    removeColorClasses(carouselCard);
-    carouselCard.classList.add(`carousel__card_color_${color}`);
 
-    updateDisplay();
-    
-    
-rightButton.onclick = () => {
-        if (currentIndex < deck.cards.length - 1) {
-            currentIndex++;
-            showingQuestion = true;
-            updateDisplay();
-        }
-    };
+    if (currentIndex === cards.length - 1) {
+      disableButton(rightBtn);
+    } else {
+      enableButton(rightBtn);
+    }
+  }
 
-   leftButton.onclick = () => {
+  function updateDisplay() {
+    const card = cards[currentIndex];
+    titleEl.textContent = `${deckName} · ${currentIndex + 1}/${cards.length}`;
+    carouselImageEl.textContent = card.question;
+    carouselImageEl.style.display = "flex";
+    carouselImageEl.style.alignItems = "center";
+    carouselImageEl.style.justifyContent = "center";
+    carouselImageEl.style.fontSize = "24px";
+    carouselImageEl.style.textAlign = "center";
+    carouselImageEl.style.padding = "20px";
+    isFlipped = false;
+    updateArrows();
+  }
+
+  rightBtn.addEventListener("click", () => {
+    if (currentIndex < cards.length - 1) {
+      currentIndex++;
+      updateDisplay();
+    }
+  });
+
+  leftBtn.addEventListener("click", () => {
     if (currentIndex > 0) {
-        currentIndex--;
-        showingQuestion = true;
-        updateDisplay();
+      currentIndex--;
+      updateDisplay();
     }
-};
+  });
 
-    carouselFlipButton.onclick = () => {
+  carouselImageEl.addEventListener("click", () => {
+    const card = cards[currentIndex];
+    if (isFlipped) {
+      carouselImageEl.textContent = card.question;
+      isFlipped = false;
+    } else {
+      carouselImageEl.textContent = card.answer;
+      isFlipped = true;
+    }
+  });
 
-        showingQuestion = !showingQuestion;
-        console.log(showingQuestion);
-        
-        updateDisplay();
-};
-
-       carouselCard.classList.add(`carousel__card_color_${color}`);
+  updateDisplay();
 }
 
-export {renderCarouselView};
+export { renderCarouselView };

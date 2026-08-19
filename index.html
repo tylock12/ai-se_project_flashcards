@@ -17,8 +17,7 @@
       rel="stylesheet"
     />
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
-    <link rel="stylesheet" href="./assets/vendor/normalize.css" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/index.css" />
   </head>
   <body class="page">
     <header class="header">
@@ -62,7 +61,7 @@
 
        <section class="carousel" id="carousel">
         <h2 class="carousel__title"> &middot; 1/10</h2>
-        <div class="carousel__row">
+        <div class="carousel__grid">
           <button
             class="carousel__btn carousel__btn_type_left carousel__btn_disabled"
             type="button"
@@ -76,12 +75,12 @@
             type="button"
             aria-label="Next card"
           ></button>
+          <button
+            class="carousel__btn carousel__btn_type_flip"
+            type="button"
+            aria-label="Flip card"
+          ></button>
         </div>
-        <button
-          class="carousel__btn carousel__btn_type_flip"
-          type="button"
-          aria-label="Flip card"
-        ></button>
       </section>
 
        <section class="about" id="about"></section>
@@ -97,4 +96,3 @@
     <script src="./assets/js/index.js" type="module"></script>
   </body>
 </html>
- 
