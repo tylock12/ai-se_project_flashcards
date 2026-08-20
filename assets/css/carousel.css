@@ -85,6 +85,8 @@
 .carousel__card-text {
   font-weight: 700;
   font-size: 32px;
+  text-alingn: center;
+  padding: 20px;
 }
 
 .carousel__btn_type_left::before {

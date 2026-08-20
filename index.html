@@ -37,27 +37,52 @@
     </header>
 
     <main class="page__main-content">
-      <section class="decks" id="home">
-        <h2 class="decks__title">My Decks</h2>
-        <ul class="decks__list">
-          <li class="decks__new-deck-btn">+ New Deck</li>
+      <section class="gallery" id="home">
+        <h2 class="gallery__title">My Decks</h2>
+        <ul class="gallery__list">
+          <li class="gallery__new-card-btn">+ New Deck</li>
           <template id="deck-template">
-            <li class="deck">
-              <a class="deck__link" href="#"></a>
-            <h3 class="deck__title"></h3>
-            <div class="deck__row">
-              <p class="deck__count"></p>
+            <li class="card">
+              <a class="card__link" href="#"></a>
+            <h3 class="card__title"></h3>
+            <div class="card__row">
+              <p class="card__count"></p>
               <button
-                class="deck__delete-btn"
+                class="card__delete-btn"
                 type="button"
                 aria-label="delete this deck"
               ></button>
             </div>
           </li>
         </template>
+        <template id="card-template">
+  <li class="card">
+    <h3 class="card__title"></h3>
+    <div class="card__row">
+      <button
+        type="button"
+        aria-label="Flip card"
+        class="card__flip-btn"
+      ></button>
+      <button
+        type="button"
+        aria-label="Delete card"
+        class="card__delete-btn"
+      ></button>
+    </div>
+  </li>
+</template>
         </ul>
 
       </section>
+
+       <section class="gallery" id="deck-view" style="display: none;">
+    <div class="gallery__bar">
+      <h2 class="gallery__title"></h2>
+      <button type="button" class="gallery__practice-btn">Practice</button>
+    </div>
+    <ul class="gallery__list"></ul>
+  </section>
 
        <section class="carousel" id="carousel">
         <h2 class="carousel__title"> &middot; 1/10</h2>

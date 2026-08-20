@@ -6,7 +6,7 @@ function renderCarouselView(cards, deckName) {
   const titleEl = carouselEl.querySelector(".carousel__title");
   const leftBtn = carouselEl.querySelector(".carousel__btn_type_left");
   const rightBtn = carouselEl.querySelector(".carousel__btn_type_right");
-  const carouselImageEl = carouselEl.querySelector(".carousel__image");
+  const carouselImageEl = carouselEl.querySelector(".carousel__card-text");
 
   function disableButton(buttonEl) {
     buttonEl.classList.add("carousel__btn_disabled");
@@ -35,12 +35,6 @@ function renderCarouselView(cards, deckName) {
     const card = cards[currentIndex];
     titleEl.textContent = `${deckName} · ${currentIndex + 1}/${cards.length}`;
     carouselImageEl.textContent = card.question;
-    carouselImageEl.style.display = "flex";
-    carouselImageEl.style.alignItems = "center";
-    carouselImageEl.style.justifyContent = "center";
-    carouselImageEl.style.fontSize = "24px";
-    carouselImageEl.style.textAlign = "center";
-    carouselImageEl.style.padding = "20px";
     isFlipped = false;
     updateArrows();
   }
