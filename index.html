@@ -40,8 +40,9 @@
       <section class="gallery" id="home">
         <h2 class="gallery__title">My Decks</h2>
         <ul class="gallery__list">
-          <li class="gallery__new-card-btn">+ New Deck</li>
-          <template id="deck-template">
+        </ul>
+        <button class="gallery__new-card-btn">+ New Deck</button>
+        <template id="deck-template">
             <li class="card">
               <a class="card__link" href="#"></a>
             <h3 class="card__title"></h3>
@@ -72,17 +73,16 @@
     </div>
   </li>
 </template>
-        </ul>
-
       </section>
 
        <section class="gallery" id="deck-view" style="display: none;">
-    <div class="gallery__bar">
-      <h2 class="gallery__title"></h2>
-      <button type="button" class="gallery__practice-btn">Practice</button>
-    </div>
-    <ul class="gallery__list"></ul>
-  </section>
+  <div class="gallery__bar">
+    <h2 class="gallery__title"></h2>
+    <button type="button" class="gallery__practice-btn">Practice</button>
+  </div>
+  <ul class="gallery__list"></ul>
+  <button type="button" class="gallery__new-card-btn gallery__new-card-btn_location_deck-view">+ New Card</button>
+</section>
 
        <section class="carousel" id="carousel">
         <h2 class="carousel__title"> &middot; 1/10</h2>

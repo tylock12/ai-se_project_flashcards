@@ -769,4 +769,10 @@ function getDeckByID(deckId) {
   return decks.find((deck) => deck.id === deckId);
 }
 
-export { decks, getDeckByID };
+function deleteDeckByID(deckId) {
+  const index = decks.findIndex((deck) => deck.id === deckId);
+  decks.splice(index, 1);
+}
+
+
+export { decks, getDeckByID, deleteDeckByID };

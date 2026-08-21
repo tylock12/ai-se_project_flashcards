@@ -1,4 +1,4 @@
-import { decks, getDeckByID } from "./decks.js";
+import { decks, getDeckByID, deleteDeckByID } from "./decks.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
 
@@ -23,7 +23,11 @@ function renderHomeView() {
 
   const deckTemplateEl = document.querySelector("#deck-template");
   const deckContainerEl = homeSection.querySelector(".gallery__list");
-  deckContainerEl.innerHTML = "";
+  
+  const existingCards = deckContainerEl.querySelectorAll(".card");
+    existingCards.forEach((card) => {
+    card.remove();
+  });
 
   function createDeckEl(deck) {
     const cloneEl = deckTemplateEl.content.cloneNode(true);
@@ -40,7 +44,8 @@ function renderHomeView() {
     const deleteButton = cloneEl.querySelector(".card__delete-btn");
     deleteButton.addEventListener("click", () => {
       // Delete functionality can be implemented later
-      console.log("Delete deck:", deck.id);
+      deleteDeckByID(deck.id);
+      renderHomeView();
     });
 
     return cloneEl;
