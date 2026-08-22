@@ -8,12 +8,14 @@ export const carouselSection = document.querySelector("#carousel");
 export const notFoundSection = document.querySelector("#not-found");
 export const allSections = [homeSection, deckViewSection, carouselSection, notFoundSection];
 
-export function showView(currentSection, display) {
+export function showView(currentSection) {
   allSections.forEach((section) => {
-    section.style.display = "none";
+    const baseClass = section.classList[0];
+    section.classList.add(`${baseClass}_hidden`);
   });
 
-  currentSection.style.display = display;
+  const currentBaseClass = currentSection.classList[0];
+  currentSection.classList.remove(`${currentBaseClass}_hidden`);
 }
 /**
  * Renders the home view showing all available decks.

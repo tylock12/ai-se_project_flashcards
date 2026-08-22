@@ -64,6 +64,10 @@
   color: #1a1a1a;
 }
 
+.gallery_hidden {
+  display: none;
+}
+
 @media screen and (max-width: 600px) {
   .gallery__title {
     font-size: 32px;

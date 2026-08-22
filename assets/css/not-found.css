@@ -1,3 +1,7 @@
 .not-found {
   display: none;
 }
+
+.not-found_hidden {
+  display: none;
+}
