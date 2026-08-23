@@ -41,10 +41,8 @@
 }
 
 .gallery__new-card-btn {
-  flex-basis: 325px;
-  width: 100%;
-  align-self: center;
-  aspect-ratio: 65/41;
+  width: 325px;
+  height: 200px;
   border-radius: 20px;
   background-color: #d9d9d9;
   display: flex;

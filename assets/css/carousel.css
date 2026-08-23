@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .carousel__title {
@@ -17,29 +18,11 @@
 .carousel__grid {
   width: 100%;
   max-width: 700px;
-  display: grid;
-  grid-template-columns: 44px 1fr 44px;
- grid-template-areas: 
-  "left card right"
-  ".  flip  .";
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   gap: 20px;
-}
-
-.carousel__btn_type_left {
-  grid-area: left;
-}
-
-.carousel__card {
-  grid-area: card;
-}
-
-.carousel__btn_type_right {
-  grid-area: right;
-}
-
-.carousel__btn_type_flip {
-  grid-area: flip;
 }
 
 .carousel__card {
@@ -51,6 +34,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
   box-shadow:
   0px 2px 8px 0px #0000001a,
   -1px 2px 2px 0px #ffffffb2 inset,
@@ -167,5 +151,20 @@
 
   .carousel__card-text {
     font-size: 24px;
+  }
+
+  .carousel__grid {
+    position: relative;
+  }
+
+  .carousel__btn_type_left {
+    position: absolute;
+    left: 0;
+    bottom: -45px;
+  }
+ .carousel__btn_type_right {
+    position: absolute;
+    right: 0;
+    bottom: -45px;
   }
 }

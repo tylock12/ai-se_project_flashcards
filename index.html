@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -39,12 +39,11 @@
     <main class="page__main-content">
       <section class="gallery" id="home">
         <h2 class="gallery__title">My Decks</h2>
-        <ul class="gallery__list">
-        </ul>
+        <ul class="gallery__list"></ul>
         <button class="gallery__new-card-btn">+ New Deck</button>
         <template id="deck-template">
-            <li class="card">
-              <a class="card__link" href="#"></a>
+          <li class="card">
+            <a class="card__link" href="#"></a>
             <h3 class="card__title"></h3>
             <div class="card__row">
               <p class="card__count"></p>
@@ -58,32 +57,39 @@
         </template>
         <template id="card-template">
           <li class="card">
-           <h3 class="card__title"></h3>
-              <div class="card__row">
-          <button
-            type="button"
-            aria-label="Flip card"
-            class="card__flip-btn"
-          ></button>
-          <button
-            type="button"
-            aria-label="Delete card"
-            class="card__delete-btn"
-          ></button>
-        </div>
-      </li>
-    </template>
+            <h3 class="card__title"></h3>
+            <div class="card__row">
+              <button
+                type="button"
+                aria-label="Flip card"
+                class="card__flip-btn"
+              ></button>
+              <button
+                type="button"
+                aria-label="Delete card"
+                class="card__delete-btn"
+              ></button>
+            </div>
+          </li>
+        </template>
       </section>
 
-  <section class="gallery gallery_hidden" id="deck-view">  <div class="gallery__bar">
-    <h2 class="gallery__title"></h2>
-    <button type="button" class="gallery__practice-btn">Practice</button>
-  </div>
-  <ul class="gallery__list"></ul>
-  <button type="button" class="gallery__new-card-btn gallery__new-card-btn_location_deck-view">+ New Card</button>
-</section>
+      <section class="gallery gallery_hidden" id="deck-view">
+        <div class="gallery__bar">
+          <h2 class="gallery__title"></h2>
+          <button type="button" class="gallery__practice-btn">Practice</button>
+        </div>
+        <ul class="gallery__list"></ul>
+        <button
+          type="button"
+          class="gallery__new-card-btn gallery__new-card-btn_location_deck-view"
+        >
+          + New Card
+        </button>
+      </section>
 
-      <section class="carousel carousel_hidden" id="carousel">        <h2 class="carousel__title"> &middot; 1/10</h2>
+      <section class="carousel carousel_hidden" id="carousel">
+        <h2 class="carousel__title">&middot; 1/10</h2>
         <div class="carousel__grid">
           <button
             class="carousel__btn carousel__btn_type_left carousel__btn_disabled"
@@ -98,20 +104,19 @@
             type="button"
             aria-label="Next card"
           ></button>
-          <button
+        </div>
+      <button
             class="carousel__btn carousel__btn_type_flip"
             type="button"
             aria-label="Flip card"
           ></button>
-        </div>
       </section>
 
-       <section class="about about_hidden" id="about"></section>
+      <section class="about about_hidden" id="about"></section>
 
       <section class="not-found not-found_hidden" id="not-found">
         <h2>Page Not Found</h2>
       </section>
-
     </main>
     <footer class="footer">
       <p class="footer__text">© 2026 Tymon</p>
