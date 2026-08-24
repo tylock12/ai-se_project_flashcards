@@ -171,9 +171,6 @@
   }
 
   .carousel__btn_type_flip {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -45px;
+   margin-top: 1px;
   }
 }

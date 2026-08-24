@@ -7,6 +7,7 @@ function renderCarouselView(cards, deckName) {
   const leftBtn = carouselEl.querySelector(".carousel__btn_type_left");
   const rightBtn = carouselEl.querySelector(".carousel__btn_type_right");
   const carouselImageEl = carouselEl.querySelector(".carousel__card-text");
+  const carouselCardEl = carouselEl.querySelector(".carousel__card");
 
   function disableButton(buttonEl) {
     buttonEl.classList.add("carousel__btn_disabled");
@@ -36,6 +37,7 @@ function renderCarouselView(cards, deckName) {
     titleEl.textContent = `${deckName} · ${currentIndex + 1}/${cards.length}`;
     carouselImageEl.textContent = card.question;
     isFlipped = false;
+     carouselCardEl.classList.remove("carousel__card_color_white");
     updateArrows();
   }
 
@@ -59,6 +61,7 @@ function renderCarouselView(cards, deckName) {
     const card = cards[currentIndex];
     isFlipped = !isFlipped;
     carouselImageEl.textContent = isFlipped ? card.answer : card.question;
+    carouselCardEl.classList.toggle("carousel__card_color_white", isFlipped);
   }
 
   carouselImageEl.addEventListener("click", toggleFlip);

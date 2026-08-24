@@ -1,5 +1,11 @@
 import { getDeckByID } from "./decks.js";
-import { showView, homeSection, deckViewSection, carouselSection, notFoundSection } from "./index.js";
+import {
+  showView,
+  homeSection,
+  deckViewSection,
+  carouselSection,
+  notFoundSection,
+} from "./index.js";
 
 let currentFlippedCards = new Set();
 let currentDeck = null;
@@ -60,6 +66,12 @@ export function renderDeckView(deckId, onNotFound) {
         cardTitle.textContent = card.answer;
         cardElement.classList.add("card_flipped");
       }
+    });
+
+    const deleteBtn = cloneEl.querySelector(".card__delete-btn");
+    deleteBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      cardElement.remove();
     });
 
     return cloneEl;
