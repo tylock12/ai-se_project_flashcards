@@ -66,9 +66,10 @@
   .footer {
     position: fixed;
     z-index: 6;
-    bottom: 0;
+    bottom: 24px;
     left: 0;
     right: 0;
+    padding: 0 20px;
   }
 
   .page_location_carousel .footer {

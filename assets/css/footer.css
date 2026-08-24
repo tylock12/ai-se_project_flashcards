@@ -10,9 +10,3 @@
   color: #1a1a1a80;
   margin: 0;
 }
-
-@media screen and (max-width: 320px) {
-  .footer {
-    margin-bottom: 16px;
-  }
-}
