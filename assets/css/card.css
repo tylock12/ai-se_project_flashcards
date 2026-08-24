@@ -1,6 +1,6 @@
 .card {
   flex-basis: 325px;
-    width: 100%;
+  width: 100%;
   aspect-ratio: 65/41;
   border-radius: 20px;
   display: flex;
@@ -50,7 +50,7 @@
   width: 24px;
   height: 24px;
   background-color: transparent;
-  background-image: url(../images/right-arrow.svg);
+  background-image: url(../images/flip.svg);
   background-position: center;
   opacity: 50%;
   cursor: pointer;
@@ -60,6 +60,10 @@
 
 .card__flip-btn:hover {
   opacity: 100%;
+}
+
+.card_flipped {
+  background-color: #fff !important;
 }
 
 .card__delete-btn {

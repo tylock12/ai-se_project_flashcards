@@ -19,7 +19,7 @@ export function renderDeckView(deckId, onNotFound) {
     return;
   }
 
-  showView(deckViewSection, "block");
+  showView(deckViewSection);
 
   const deckViewTitle = deckViewSection.querySelector(".gallery__title");
   deckViewTitle.textContent = deck.name;
@@ -54,17 +54,12 @@ export function renderDeckView(deckId, onNotFound) {
       if (isFlipped) {
         currentFlippedCards.delete(card.id);
         cardTitle.textContent = card.question;
+        cardElement.classList.remove("card_flipped");
       } else {
         currentFlippedCards.add(card.id);
         cardTitle.textContent = card.answer;
+        cardElement.classList.add("card_flipped");
       }
-    });
-
-    const deleteBtn = cloneEl.querySelector(".card__delete-btn");
-    deleteBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      cloneEl.querySelector(".card")?.remove();
-      console.log("Delete card:", card.id);
     });
 
     return cloneEl;

@@ -53,16 +53,16 @@ function renderCarouselView(cards, deckName) {
     }
   });
 
-  carouselImageEl.addEventListener("click", () => {
+  const flipBtn = carouselEl.querySelector(".carousel__btn_type_flip");
+
+  function toggleFlip() {
     const card = cards[currentIndex];
-    if (isFlipped) {
-      carouselImageEl.textContent = card.question;
-      isFlipped = false;
-    } else {
-      carouselImageEl.textContent = card.answer;
-      isFlipped = true;
-    }
-  });
+    isFlipped = !isFlipped;
+    carouselImageEl.textContent = isFlipped ? card.answer : card.question;
+  }
+
+  carouselImageEl.addEventListener("click", toggleFlip);
+  flipBtn.addEventListener("click", toggleFlip);
 
   updateDisplay();
 }

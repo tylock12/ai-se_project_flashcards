@@ -21,13 +21,13 @@ export function showView(currentSection) {
  * Renders the home view showing all available decks.
  */
 function renderHomeView() {
-  showView(homeSection, "block");
+  showView(homeSection);
 
   const deckTemplateEl = document.querySelector("#deck-template");
   const deckContainerEl = homeSection.querySelector(".gallery__list");
   
   const existingCards = deckContainerEl.querySelectorAll(".card");
-    existingCards.forEach((card) => {
+  existingCards.forEach((card) => {
     card.remove();
   });
 
@@ -62,7 +62,7 @@ function renderHomeView() {
 }
 
 function renderNotFoundView() {
- showView(notFoundSection, "flex");
+ showView(notFoundSection);
 }
 
 /**
@@ -87,7 +87,7 @@ function router() {
     const deckId = hash.split("/")[1];
     const deck = getDeckByID(deckId);
     if (deck) {
-      showView(carouselSection, "block");
+      showView(carouselSection);
       renderCarouselView(deck.cards, deck.name);
     } else {
       renderNotFoundView();
