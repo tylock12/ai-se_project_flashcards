@@ -4,9 +4,10 @@ import { renderDeckView } from "./deck-view.js";
 
 export const homeSection = document.querySelector("#home");
 export const deckViewSection = document.querySelector("#deck-view");
+export const newDeckViewSection = document.querySelector("#new-deck-view");
 export const carouselSection = document.querySelector("#carousel");
 export const notFoundSection = document.querySelector("#not-found");
-export const allSections = [homeSection, deckViewSection, carouselSection, notFoundSection];
+export const allSections = [homeSection, deckViewSection, newDeckViewSection, carouselSection, notFoundSection];
 
 export function showView(currentSection) {
   allSections.forEach((section) => {
@@ -73,13 +74,15 @@ function router() {
   const hash = window.location.hash.slice(1) || "home";
 
   const isCarousel = hash.startsWith("carousel/");
-  const isNotFound = !(hash === "home" || hash === "" || hash.startsWith("deck/") || hash.startsWith("carousel/"));
+  const isNotFound = !(hash === "home" || hash === "" || hash === "new-deck" || hash.startsWith("deck/") || hash.startsWith("carousel/"));
 
   document.body.classList.toggle("page_mobile-no-bar", isCarousel || isNotFound);
   document.body.classList.toggle("page_location_carousel", isCarousel);
 
   if (hash === "home" || hash === "") {
     renderHomeView();
+  } else if (hash === "new-deck") {
+    showView(newDeckViewSection)
   } else if (hash.startsWith("deck/")) {
     const deckId = hash.split("/")[1];
     renderDeckView(deckId, renderNotFoundView);
@@ -99,3 +102,8 @@ function router() {
 
 window.addEventListener("DOMContentLoaded", router);
 window.addEventListener("hashchange", router);
+
+const newDeckBtn = document.querySelector("#home .gallery__new-card-btn");
+newDeckBtn.addEventListener("click", () => {
+  window.location.hash = "new-deck";
+});

@@ -1,0 +1,23 @@
+.new-deck-view {
+  display: flex;
+}
+
+.new-deck-view_hidden {
+  display: none;
+}
+
+.new-deck-view__color-input:checked {
+  border: 2px solid rgb(0 0 0 / 0.2);
+}
+
+.new-deck-view__color-input:hover {
+    border: 2px solid rgba(0, 0, 0, 0.4);}
+
+.new-deck-view__color-input:focus {
+    border: 2px solid rgba(0, 0, 0, 0.6);
+}
+
+.new-deck-view__submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
