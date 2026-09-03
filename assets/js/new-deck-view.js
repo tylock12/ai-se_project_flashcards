@@ -43,6 +43,21 @@ return str
     .replace(/^-+|-+$/g, "");
 }
 
+const errorModal = document.querySelector("#deck-error-modal");
+const errorCloseBtn = errorModal.querySelector(".modal__close");
+const errorMessageEl = errorModal.querySelector(".modal__message");
+
+function openModal(modal) {
+  modal.classList.add("modal_visible");     // ADDS the class
+}
+
+function closeModal(modal) {
+  modal.classList.remove("modal_visible");  // REMOVES the class
+}
+
+errorCloseBtn.addEventListener("click", function () {
+  closeModal(errorModal);
+});
 /**
 * Returns a consistent lowercase hex color string with a leading "#".
 * Accepts values with or without a leading "#". Returns "#64d583" as a
