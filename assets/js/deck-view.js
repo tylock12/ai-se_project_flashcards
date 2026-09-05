@@ -35,7 +35,7 @@ export function renderDeckView(deckId, onNotFound) {
   const newPracticeBtn = practiceBtn.cloneNode(true);
   practiceBtn.parentNode.replaceChild(newPracticeBtn, practiceBtn);
   newPracticeBtn.addEventListener("click", () => {
-    window.location.hash = `#carousel/${deck.id}`;
+    window.location.hash = `#carousel/${deck._id}`;
   });
 
   const cardTemplateEl = document.querySelector("#card-template");
@@ -51,18 +51,18 @@ export function renderDeckView(deckId, onNotFound) {
 
     const cardTitle = cloneEl.querySelector(".card__title");
     cardTitle.textContent = card.question;
-    cardTitle.dataset.cardId = card.id;
+    cardTitle.dataset.cardId = card._id;
 
     const flipBtn = cloneEl.querySelector(".card__flip-btn");
     flipBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      const isFlipped = currentFlippedCards.has(card.id);
+      const isFlipped = currentFlippedCards.has(card._id);
       if (isFlipped) {
-        currentFlippedCards.delete(card.id);
+        currentFlippedCards.delete(card._id);
         cardTitle.textContent = card.question;
         cardElement.classList.remove("card_flipped");
       } else {
-        currentFlippedCards.add(card.id);
+        currentFlippedCards.add(card._id);
         cardTitle.textContent = card.answer;
         cardElement.classList.add("card_flipped");
       }

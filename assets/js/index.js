@@ -2,6 +2,8 @@ import { decks, getDeckByID, deleteDeckByID } from "./decks.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
 import { disableSubmitBtn } from "./new-deck-view.js";
+import { getDecks } from "./api.js";
+import { showError } from "./new-deck-view.js";
 
 export const homeSection = document.querySelector("#home");
 export const deckViewSection = document.querySelector("#deck-view");
@@ -22,7 +24,7 @@ export function showView(currentSection) {
 /**
  * Renders the home view showing all available decks.
  */
-function renderHomeView() {
+function renderHomeView(deck) {
   showView(homeSection);
 
   const deckTemplateEl = document.querySelector("#deck-template");
@@ -40,7 +42,7 @@ function renderHomeView() {
     deckElement.style.backgroundColor = deck.color;
 
     const deckLink = cloneEl.querySelector(".card__link");
-    deckLink.href = `#deck/${deck.id}`;
+    deckLink.href = `#deck/${deck._id}`;
 
     cloneEl.querySelector(".card__title").textContent = deck.name;
     cloneEl.querySelector(".card__count").textContent = `${deck.cards.length} cards`;
@@ -48,7 +50,7 @@ function renderHomeView() {
     const deleteButton = cloneEl.querySelector(".card__delete-btn");
     deleteButton.addEventListener("click", () => {
       // Delete functionality can be implemented later
-      deleteDeckByID(deck.id);
+      deleteDeckByID(deck._id);
       renderHomeView();
     });
 
@@ -60,7 +62,7 @@ function renderHomeView() {
     deckContainerEl.appendChild(deckEl);
   }
 
-  decks.forEach(renderDeckEl);
+  deck.forEach(renderDeckEl);
 }
 
 function renderNotFoundView() {
@@ -102,7 +104,16 @@ function router() {
   }
 }
 
-window.addEventListener("DOMContentLoaded", router);
+window.addEventListener("DOMContentLoaded", () => {
+  getDecks();
+  router();.then((decks) => {
+    renderHomeView(decks);
+  })
+  .catch(showError)
+  .finally(() => {
+    router();
+  });
+});
 window.addEventListener("hashchange", router);
 
 const newDeckBtn = document.querySelector("#home .gallery__new-card-btn");
