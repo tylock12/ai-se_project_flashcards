@@ -1,9 +1,11 @@
-import { decks, getDeckByID, deleteDeckByID } from "./decks.js";
+import { decks, getDeckByID, deleteDeckByID, fetchedDecks } from "./decks.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
 import { disableSubmitBtn } from "./new-deck-view.js";
 import { getDecks } from "./api.js";
 import { showError } from "./new-deck-view.js";
+import { deleteDeck } from "./api.js";
+import { fetchedDecks } from "./decks.js";
 
 export const homeSection = document.querySelector("#home");
 export const deckViewSection = document.querySelector("#deck-view");
@@ -47,12 +49,15 @@ function renderHomeView(deck) {
     cloneEl.querySelector(".card__title").textContent = deck.name;
     cloneEl.querySelector(".card__count").textContent = `${deck.cards.length} cards`;
 
-    const deleteButton = cloneEl.querySelector(".card__delete-btn");
+  const deleteButton = cloneEl.querySelector(".card__delete-btn");
     deleteButton.addEventListener("click", () => {
-      // Delete functionality can be implemented later
-      deleteDeckByID(deck._id);
-      renderHomeView();
-    });
+      deleteDeck(deck._id)
+        .then(() => {
+          const index = fetchedDecks.findIndex((d) => d._id === deck._id);
+          fetchedDecks.splice(index, 1);
+          renderHomeView(fetchedDecks);
+        });
+  });
 
     return cloneEl;
   }
@@ -105,14 +110,15 @@ function router() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  getDecks();
-  router();.then((decks) => {
-    renderHomeView(decks);
-  })
-  .catch(showError)
-  .finally(() => {
-    router();
-  });
+  getDecks()
+    .then((decks) => {
+      fetchedDecks.push(...decks);
+      renderHomeView(fetchedDecks);
+    })
+    .catch(showError)
+    .finally(() => {
+      router();
+    });
 });
 window.addEventListener("hashchange", router);
 

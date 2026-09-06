@@ -1,4 +1,5 @@
-import { decks } from "./decks.js";
+import { addDeck } from "./api.js";
+import { fetchedDecks } from "./decks.js";
 
 const HEX_DIGITS = /^[0-9a-fA-F]{6}$/;
 
@@ -11,11 +12,11 @@ const errorCloseBtn = errorModal.querySelector(".modal__close");
 const errorMessageEl = errorModal.querySelector(".modal__message");
 
 function disableSubmitBtn() {
-  submitBtn.disabled = true; 
+  submitBtn.disabled = true;
 }
 
 function enableSubmitBtn() {
-  submitBtn.disabled = false; 
+  submitBtn.disabled = false;
 }
 
 function openModal(modal) {
@@ -58,13 +59,6 @@ function normalizeColor(color) {
   return "#" + hex.toLowerCase();
 }
 
-function slugify(str) {
-  return str
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
 
 formEl.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -72,34 +66,34 @@ formEl.addEventListener("submit", (e) => {
 
   const formData = new FormData(e.target);
   const values = Object.fromEntries(formData);
-  const colorValue = values.color; 
+  const colorValue = values.color;
 
   const jsonData = parseJSON(textareaEl.value);
   if (jsonData === null) {
     showError("Invalid JSON syntax. Please check your format.");
-    return; 
+    return;
   }
 
   if (typeof jsonData !== 'object' || jsonData === null) {
     showError("JSON must be a valid object containing data fields.");
-    return; 
+    return;
   }
 
   const validatedName = validateName(jsonData.name);
   if (validatedName === null) {
     showError("The 'name' field must be a text string between 2 and 80 characters.");
-    return; 
+    return;
   }
 
   if (!Array.isArray(jsonData.cards)) {
     showError("The 'cards' field must be an array.");
-    return; 
+    return;
   }
 
   if (typeof jsonData.color === 'string') {
     if (jsonData.color.toLowerCase() !== colorValue.toLowerCase()) {
       showError("The color field in the JSON conflicts with your selected color picker value.");
-      return; 
+      return;
     }
   }
 
@@ -117,17 +111,14 @@ formEl.addEventListener("submit", (e) => {
   }
 
   const color = normalizeColor(values.color);
-  const id = `${slugify(jsonData.name)}-${Date.now()}`;
-
-  const deck = {
-    id: id,
-    color: color,
+  addDeck({
     name: jsonData.name,
     cards: jsonData.cards,
-  };
-
-  decks.push(deck);
-  window.location.hash = `#deck/${id}`;
+    color: jsonData.color,
+  }).then((newDeck) => {
+    fetchedDecks.push(newDeck);
+    window.location.hash = "deck/" + newDeck._id;
+  });
 });
 
 export { disableSubmitBtn };

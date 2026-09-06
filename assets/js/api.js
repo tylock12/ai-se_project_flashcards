@@ -16,6 +16,32 @@ function getDecks() {
   return fetch(`${baseUrl}/v1/decks`, { headers }).then(processResponse);
 }
 
+function deleteDeck(deckID) {
+  return fetch(`${baseUrl}/v1/decks/${deckID}`, { method: "DELETE", headers }).then(
+    processResponse,
+  );
+}
 
+function addDeck({ name, color, cards }) {
+  return fetch(`${baseUrl}/v1/decks`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ name, color, cards }),
+  }).then(processResponse);
+}
+
+
+ /**
+  * Removes the deck matching the given ID from {@link fetchedDecks} in place.
+  *
+  * @param {string} deckId - The unique identifier of the deck to remove
+  */
+ function removeDeckByID(deckId) {
+   const index = fetchedDecks.findIndex((deck) => deck._id === deckId);
+   if (index !== -1) {
+     fetchedDecks.splice(index, 1);
+   }
+ }
 
 export { getDecks, getDeckByID, addDeck, deleteDeck };
+

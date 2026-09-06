@@ -1,4 +1,3 @@
-
 const decks = [
   {
     id: "html-basics",
@@ -767,12 +766,12 @@ const decks = [
  * @returns {object|undefined} The deck object if found, undefined otherwise
  */
 function getDeckByID(deckId) {
-  return decks.find((deck) => deck._id === deckId);
+  return fetchedDecks.find((deck) => deck._id === deckId);
 }
 
 function deleteDeckByID(deckId) {
-  const index = decks.findIndex((deck) => deck._id === deckId);
-  decks.splice(index, 1);
+  const index = fetchedDecks.findIndex((deck) => deck._id === deckId);
+  fetchedDecks.splice(index, 1);
 }
 
 
