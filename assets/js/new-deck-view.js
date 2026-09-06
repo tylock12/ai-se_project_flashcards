@@ -11,18 +11,36 @@ const errorModal = document.querySelector("#deck-error-modal");
 const errorCloseBtn = errorModal.querySelector(".modal__close");
 const errorMessageEl = errorModal.querySelector(".modal__message");
 
+/**
+ * Disables the new-deck form's submit button.
+ * @returns {void}
+ */
 function disableSubmitBtn() {
   submitBtn.disabled = true;
 }
 
+/**
+ * Enables the new-deck form's submit button.
+ * @returns {void}
+ */
 function enableSubmitBtn() {
   submitBtn.disabled = false;
 }
 
+/**
+ * Makes a modal visible.
+ * @param {HTMLElement} modal - The modal element to show.
+ * @returns {void}
+ */
 function openModal(modal) {
   modal.classList.add("modal_visible");
 }
 
+/**
+ * Hides a modal.
+ * @param {HTMLElement} modal - The modal element to hide.
+ * @returns {void}
+ */
 function closeModal(modal) {
   modal.classList.remove("modal_visible");
 }
@@ -31,12 +49,22 @@ errorCloseBtn.addEventListener("click", function () {
   closeModal(errorModal);
 });
 
+/**
+ * Displays an error message in the deck-error modal and re-enables the submit button.
+ * @param {string} message - The error message to display.
+ * @returns {void}
+ */
 function showError(message) {
   errorMessageEl.textContent = message;
   openModal(errorModal);
-  enableSubmitBtn(); // Centralized button re-enabler! No more repetition below.
+  enableSubmitBtn();
 }
 
+/**
+ * Validates that a deck name is a string within the allowed length range.
+ * @param {string} name - The proposed deck name.
+ * @returns {string|null} The valid name, or null if invalid.
+ */
 function validateName(name) {
   if (typeof name !== 'string' || name.length < 2 || name.length > 80) {
     return null;
@@ -44,6 +72,11 @@ function validateName(name) {
   return name;
 }
 
+/**
+ * Safely parses a JSON string.
+ * @param {string} jsonString - The raw JSON text to parse.
+ * @returns {Object|null} The parsed object, or null if parsing failed.
+ */
 function parseJSON(jsonString) {
   try {
     return JSON.parse(jsonString);
@@ -52,13 +85,18 @@ function parseJSON(jsonString) {
   }
 }
 
+/**
+ * Normalizes a color value to a lowercase 6-digit hex string, falling back
+ * to a default color if the input is missing or invalid.
+ * @param {string} color - The raw color value to normalize.
+ * @returns {string} A valid lowercase hex color string, e.g. "#64d583".
+ */
 function normalizeColor(color) {
   if (!color) return "#64d583";
   const hex = color.startsWith("#") ? color.slice(1) : color;
   if (!HEX_DIGITS.test(hex)) return "#64d583";
   return "#" + hex.toLowerCase();
 }
-
 
 formEl.addEventListener("submit", (e) => {
   e.preventDefault();

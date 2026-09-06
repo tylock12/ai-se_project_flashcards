@@ -66,10 +66,43 @@
               ></button>
               <button
                 type="button"
+                aria-label="Edit card"
+                class="card__edit-btn"
+              ></button>
+              <button
+                type="button"
                 aria-label="Delete card"
                 class="card__delete-btn"
               ></button>
             </div>
+          </li>
+        </template>
+        <template id="card-form-template">
+          <li class="card card__form">
+            <form class="card__inner-form">
+              <input
+                type="text"
+                class="card__input card__question-input"
+                placeholder="Type the question or term"
+              />
+              <input
+                type="text"
+                class="card__input card__answer-input card__answer-input_hidden"
+                placeholder="Type the answer"
+              />
+              <div class="card__row">
+                <button
+                  type="button"
+                  class="card__flip-btn"
+                  aria-label="Flip card"
+                ></button>
+                <button
+                  type="submit"
+                  class="card__confirm-btn"
+                  aria-label="Confirm"
+                ></button>
+              </div>
+            </form>
           </li>
         </template>
       </section>

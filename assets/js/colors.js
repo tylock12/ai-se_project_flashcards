@@ -14,7 +14,7 @@ const colorMap = {
  * returned.
  *
  * @param {string} colorName
- * @returns a hexadecimal string
+ * @returns {string} a hexadecimal string
  */
 function stringToHex(colorName) {
   const color = colorMap[colorName];
@@ -27,7 +27,7 @@ function stringToHex(colorName) {
  * if found in colorMap. If a match isn't found, null is returned.
  *
  * @param {string} hexValue
- * @returns a color name string
+ * @returns {string|null} a color name string
  */
 function hexToString(hexValue) {
   const colorString = Object.keys(colorMap).find((key) => {
@@ -42,6 +42,7 @@ function hexToString(hexValue) {
  * class list.
  *
  * @param {HTMLElement} element
+ * @returns {void}
  */
 function removeColorClasses(element) {
   [...element.classList].forEach((cls) => {

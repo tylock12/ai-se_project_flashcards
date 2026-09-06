@@ -139,6 +139,11 @@
   display: none;
 }
 
+.card__answer-input_hidden { 
+  display: none; 
+}
+
+
 @media screen and (max-width: 805px) {
   .carousel__card {
     width: 100%;

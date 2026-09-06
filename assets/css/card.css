@@ -82,3 +82,69 @@
 .card__delete-btn:hover {
   opacity: 100%;
 }
+
+.card__edit-btn {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  background-image: url(../images/edit-icon.svg);
+  background-position: center;
+  opacity: 50%;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  border: none;
+  z-index: 2;
+}
+
+.card__edit-btn:hover {
+  opacity: 100%;
+}
+
+.card__form {
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.card__inner-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.card__input {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  padding: 0;
+  width: 100%;
+  font-family: inherit;
+}
+
+.card__input::placeholder {
+  color: #00000080;
+}
+
+.card__question-input_hidden,
+.card__answer-input_hidden {
+  display: none;
+}
+
+.card__confirm-btn {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  background-image: url(../images/check-icon.svg);
+  background-position: center;
+  opacity: 50%;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  border: none;
+}
+
+.card__confirm-btn:hover {
+  opacity: 100%;
+}
