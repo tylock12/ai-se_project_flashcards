@@ -12,7 +12,8 @@ export const deckViewSection = document.querySelector("#deck-view");
 export const newDeckViewSection = document.querySelector("#new-deck-view");
 export const carouselSection = document.querySelector("#carousel");
 export const notFoundSection = document.querySelector("#not-found");
-export const allSections = [homeSection, deckViewSection, newDeckViewSection, carouselSection, notFoundSection];
+export const aboutSection = document.querySelector("#about");
+export const allSections = [homeSection, deckViewSection, newDeckViewSection, carouselSection, notFoundSection, aboutSection];
 
 export function showView(currentSection) {
   allSections.forEach((section) => {
@@ -82,13 +83,16 @@ function router() {
   const hash = window.location.hash.slice(1) || "home";
 
   const isCarousel = hash.startsWith("carousel/");
-  const isNotFound = !(hash === "home" || hash === "" || hash === "new-deck" || hash.startsWith("deck/") || hash.startsWith("carousel/"));
+  const isNotFound = !(hash === "home" || hash === "" || hash === "new-deck" || hash === "about" || hash.startsWith("deck/") || hash.startsWith("carousel/"));
 
   document.body.classList.toggle("page_mobile-no-bar", isCarousel || isNotFound);
   document.body.classList.toggle("page_location_carousel", isCarousel);
 
   if (hash === "home" || hash === "") {
     renderHomeView();
+  } else if (hash === "about") {
+    showView(aboutSection);
+  }
   } else if (hash === "new-deck") {
     disableSubmitBtn()
     showView(newDeckViewSection)
