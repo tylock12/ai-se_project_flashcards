@@ -152,11 +152,11 @@ formEl.addEventListener("submit", (e) => {
   addDeck({
     name: jsonData.name,
     cards: jsonData.cards,
-    color: jsonData.color,
+    color: targetColor,
   }).then((newDeck) => {
     fetchedDecks.push(newDeck);
     window.location.hash = "deck/" + newDeck._id;
   });
 });
 
-export { disableSubmitBtn };
+export {disableSubmitBtn, showError };

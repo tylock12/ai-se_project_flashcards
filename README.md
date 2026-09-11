@@ -9,12 +9,13 @@ each of which can be viewed in a carousel.
 - Browse a collection of flashcard decks on the home page, each with a distinct color
 - Click into a deck to view its cards in an interactive carousel, flipping through one card at a time
 - Create a new deck by submitting a name, color, and a set of question/answer cards as JSON
+- Add, edit, and delete individual cards within a deck
 - Delete a deck directly from the home page with a single click
 - View an About page describing the project
 
 ## Data & Error Handling
 
-- All decks are fetched from, created in, and deleted from a remote API rather than stored locally, so changes persist across sessions
+- All decks and cards are fetched from, created in, updated in, and deleted from a remote API rather than stored locally, so changes persist across sessions
 - Requests are authenticated using a personal API token sent via the `Authorization` header
 - If a request fails (e.g., invalid input, network error, or a bad response from the server), the error is caught and displayed to the user in a modal, rather than failing silently
 

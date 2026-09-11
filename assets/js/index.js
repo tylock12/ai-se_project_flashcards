@@ -2,7 +2,7 @@ import { getDeckByID, deleteDeckByID, fetchedDecks } from "./decks.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
 import { disableSubmitBtn } from "./new-deck-view.js";
-import { getDecks } from "./api.js";
+import { getDecks, deleteDeck } from "./api.js";
 import { showError } from "./new-deck-view.js";
 
 export const homeSection = document.querySelector("#home");
