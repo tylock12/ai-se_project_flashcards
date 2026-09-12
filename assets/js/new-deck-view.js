@@ -159,4 +159,4 @@ formEl.addEventListener("submit", (e) => {
   });
 });
 
-export {disableSubmitBtn, showError };
+export {disableSubmitBtn, enableSubmitBtn, showError };

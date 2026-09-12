@@ -1,7 +1,7 @@
 import { getDeckByID, deleteDeckByID, fetchedDecks } from "./decks.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
-import { disableSubmitBtn } from "./new-deck-view.js";
+import { disableSubmitBtn, enableSubmitBtn } from "./new-deck-view.js";
 import { getDecks, deleteDeck } from "./api.js";
 import { showError } from "./new-deck-view.js";
 
@@ -104,7 +104,7 @@ function router() {
   } else if (hash === "about") {
     showView(aboutSection);
   } else if (hash === "new-deck") {
-    disableSubmitBtn()
+    enableSubmitBtn()
     showView(newDeckViewSection)
   } else if (hash.startsWith("deck/")) {
     const deckId = hash.split("/")[1];

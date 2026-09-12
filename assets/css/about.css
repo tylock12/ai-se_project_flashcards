@@ -5,3 +5,7 @@
     border-radius: 8px;
     font-family: auto;
 }
+
+.about_hidden { 
+    display: none; 
+}
