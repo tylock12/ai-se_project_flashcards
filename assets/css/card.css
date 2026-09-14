@@ -134,8 +134,8 @@
 }
 
 .card__confirm-btn {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   background-color: transparent;
   background-image: url(../images/check-icon.svg);
   background-position: center;
