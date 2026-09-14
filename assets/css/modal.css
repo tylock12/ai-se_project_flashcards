@@ -77,3 +77,17 @@
   background-color: #000;
   color: #fff;
 }
+
+.modal_type_error .modal__container {
+  background-color: #f4a89c;
+}
+
+.modal_type_error .modal__title,
+.modal_type_error .modal__message {
+  color: #fff;
+}
+
+.modal_type_error .modal__close {
+  background-color: #000;
+  color: #fff;
+}

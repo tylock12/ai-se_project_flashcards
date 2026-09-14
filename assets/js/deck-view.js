@@ -1,5 +1,6 @@
 import { getDeckByID } from "./decks.js";
 import { deleteCard, addCard, updateCard } from "./api.js";
+import { showError } from "./new-deck-view.js";
 import {
   showView,
   homeSection,
@@ -79,11 +80,15 @@ export function renderDeckView(deckId, onNotFound) {
     const deleteBtn = cloneEl.querySelector(".card__delete-btn");
     deleteBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      deleteCard(card._id).then(() => {
-        const index = deck.cards.findIndex((c) => c._id === card._id);
-        deck.cards.splice(index, 1);
-        cardElement.remove();
-      });
+      deleteCard(card._id)
+        .then(() => {
+          const index = deck.cards.findIndex((c) => c._id === card._id);
+          deck.cards.splice(index, 1);
+          cardElement.remove();
+        })
+        .catch(() => {
+          showError("Something went wrong");
+        });
     });
 
     const editBtn = cloneEl.querySelector(".card__edit-btn");
@@ -102,6 +107,10 @@ export function renderDeckView(deckId, onNotFound) {
    * @returns {DocumentFragment} The populated form element.
    */
   function createCardFormEl(existingCard) {
+    if (document.querySelector(".card__form") && !existingCard) {
+      return null;
+    }
+
     const cloneEl = cardFormTemplateEl.content.cloneNode(true);
 
     const formElement = cloneEl.querySelector(".card__form");
@@ -130,21 +139,32 @@ export function renderDeckView(deckId, onNotFound) {
       e.preventDefault();
       const question = questionInput.value.trim();
       const answer = answerInput.value.trim();
-      if (!question || !answer) return;
+      if (!question || !answer) {
+        showError("Both the question and answer need to be filled in.");
+        return;
+      }
 
       if (existingCard) {
-        updateCard(existingCard._id, { question, answer }).then((updatedCard) => {
-          existingCard.question = updatedCard.question;
-          existingCard.answer = updatedCard.answer;
-          const newCardEl = createCardEl(existingCard);
-          formElement.replaceWith(newCardEl);
-        });
+        updateCard(existingCard._id, { question, answer })
+          .then((updatedCard) => {
+            existingCard.question = updatedCard.question;
+            existingCard.answer = updatedCard.answer;
+            const newCardEl = createCardEl(existingCard);
+            formElement.replaceWith(newCardEl);
+          })
+          .catch(() => {
+            showError("Something went wrong");
+          });
       } else {
-        addCard(deck._id, { question, answer }).then((newCard) => {
-          deck.cards.push(newCard);
-          const newCardEl = createCardEl(newCard);
-          formElement.replaceWith(newCardEl);
-        });
+        addCard(deck._id, { question, answer })
+          .then((newCard) => {
+            deck.cards.push(newCard);
+            const newCardEl = createCardEl(newCard);
+            formElement.replaceWith(newCardEl);
+          })
+          .catch(() => {
+            showError("Something went wrong");
+          });
       }
     });
 
@@ -165,7 +185,9 @@ export function renderDeckView(deckId, onNotFound) {
   newCardBtn.parentNode.replaceChild(newCardBtnClone, newCardBtn);
   newCardBtnClone.addEventListener("click", () => {
     const formEl = createCardFormEl();
-    cardContainerEl.appendChild(formEl);
+    if (formEl) {
+      cardContainerEl.appendChild(formEl);
+    }
   });
 }
 
@@ -176,4 +198,3 @@ export function renderDeckView(deckId, onNotFound) {
 export function getCurrentDeck() {
   return currentDeck;
 }
-

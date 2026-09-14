@@ -1,20 +1,116 @@
 .new-deck-view {
   display: flex;
+  flex-direction: column;
 }
 
 .new-deck-view_hidden {
   display: none;
 }
 
+.new-deck-view__title {
+  margin: 0 0 20px;
+}
+
+.new-deck-view__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 500px;
+}
+
+.new-deck-view__color-picker {
+  display: flex;
+  gap: 12px;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.new-deck-view__legend {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 0;
+}
+
+.new-deck-view__color-label {
+  display: flex;
+}
+
+.new-deck-view__color-input {
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.new-deck-view__color-input_color_green {
+  background-color: #64d583;
+}
+
+.new-deck-view__color-input_color_blue {
+  background-color: #91a8f9;
+}
+
+.new-deck-view__color-input_color_purple {
+  background-color: #aa8ef0;
+}
+
+.new-deck-view__color-input_color_pink {
+  background-color: #ee92d7;
+}
+
+.new-deck-view__color-input_color_orange {
+  background-color: #ee955e;
+}
+
+.new-deck-view__color-input_color_yellow {
+  background-color: #f5d770;
+}
+
 .new-deck-view__color-input:checked {
-  border: 2px solid rgb(0 0 0 / 0.2);
+  border: 2px solid rgb(0 0 0 / 0.4);
 }
 
 .new-deck-view__color-input:hover {
-    border: 2px solid rgba(0, 0, 0, 0.4);}
+  border: 2px solid rgba(0, 0, 0, 0.4);
+}
 
 .new-deck-view__color-input:focus {
-    border: 2px solid rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(0, 0, 0, 0.6);
+}
+
+.new-deck-view__json-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.new-deck-view__textarea {
+  width: 100%;
+  min-height: 220px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  font-family: monospace;
+  font-size: 14px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.new-deck-view__submit-btn {
+  align-self: flex-start;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .new-deck-view__submit-btn:disabled {

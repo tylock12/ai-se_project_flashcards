@@ -2,6 +2,7 @@ import { addDeck } from "./api.js";
 import { fetchedDecks } from "./decks.js";
 
 const HEX_DIGITS = /^[0-9a-fA-F]{6}$/;
+const VALID_HEX_COLORS = ["#64D583", "#91A8F9", "#EE92D7", "#AA8EF0", "#EE955E", "#F5D770"];
 
 const formEl = document.querySelector("#new-deck-form");
 const submitBtn = document.querySelector(".new-deck-view__submit-btn");
@@ -142,8 +143,11 @@ formEl.addEventListener("submit", (e) => {
       return;
     }
 
-    if (card.color && String(card.color).toLowerCase() !== targetColor.toLowerCase()) {
-      showError(`Color mismatch! Card '${card.name || 'Unknown'}' color does not match the deck color.`);
+    if (
+      card.color &&
+      !VALID_HEX_COLORS.map((c) => c.toLowerCase()).includes(String(card.color).toLowerCase())
+    ) {
+      showError(`Invalid card color use one of: ${VALID_HEX_COLORS.join(", ")}`);
       return;
     }
   }
@@ -154,7 +158,10 @@ formEl.addEventListener("submit", (e) => {
     cards: jsonData.cards,
     color: targetColor,
   }).then((newDeck) => {
-    fetchedDecks.push(newDeck);
+    fetchedDecks.push({
+      ...newDeck,
+      cards: newDeck.cards.length > 0 ? newDeck.cards : jsonData.cards,
+    });
     window.location.hash = "deck/" + newDeck._id;
   });
 });

@@ -189,10 +189,25 @@
             </label>
           </fieldset>
           <label class="new-deck-view__json-input">
-            <textarea class="new-deck-view__textarea"></textarea>
+            <span class="new-deck-view__json-label"
+              >Write the JSON array of cards so that it matches this
+              schema</span
+            >
+            <textarea class="new-deck-view__textarea">
+{
+  "name": "Deck Name",
+  "cards": [
+    {
+      "question": "Question",
+      "answer": "Answer"
+    },
+    ...
+  ]
+}</textarea
+            >
           </label>
           <button type="submit" class="new-deck-view__submit-btn">
-            Create Deck
+            Create the Deck
           </button>
         </form>
       </section>
@@ -222,16 +237,29 @@
       </section>
 
       <section class="about about_hidden" id="about">
-        <h2 class="about__title">About</h2>
-        <p class="about__text">Learn more about our flashcard application.</p>
+        <h2 class="about__title">About the Flash Cards App</h2>
+        <p class="about__text">
+          In this Flash Cards App, you can create your decks of cards to
+          memorize study materials and practice them. It's a student project for
+          the TripleTen AI-Assisted Software Engineering course.
+        </p>
+        <p class="about__text">
+          When creating a deck of cards, you have to paste/type JSON following
+          this schema:
+        </p>
         <pre class="about__pre"><code>
           {
-            "name": "Flashcards App",
-            "version": "1.0.0",
+            "name": "Name",
+            "cards": [
+              {
+                "question": "Question?",
+                "answer": "Answer"
+              },
+              ...
+            ]
           }
         </code></pre>
       </section>
-
       <section class="not-found not-found_hidden" id="not-found">
         <h2>Page Not Found</h2>
       </section>
@@ -239,13 +267,12 @@
     <footer class="footer">
       <p class="footer__text">© 2026 Tymon</p>
     </footer>
-
-    <div class="modal" id="deck-error-modal">
+    <div class="modal modal_type_error" id="deck-error-modal">
       <div class="modal__container">
-        <h2 class="modal__title">Error</h2>
+        <h2 class="modal__title">An error has occurred</h2>
         <p class="modal__message"></p>
         <div class="modal__buttons">
-          <button class="modal__close" type="button">Close</button>
+          <button class="modal__close" type="button">Dismiss</button>
         </div>
       </div>
     </div>

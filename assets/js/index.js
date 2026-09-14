@@ -62,7 +62,10 @@ function renderHomeView(deck) {
         .then(() => {
           const index = fetchedDecks.findIndex((d) => d._id === deck._id);
           fetchedDecks.splice(index, 1);
-          renderHomeView(fetchedDecks);
+          deckElement.remove();
+        })
+        .catch(() => {
+          showError("Something went wrong");
         });
     });
 
@@ -127,7 +130,6 @@ window.addEventListener("DOMContentLoaded", () => {
   getDecks()
     .then((decks) => {
       fetchedDecks.push(...decks);
-      renderHomeView(fetchedDecks);
     })
     .catch(showError)
     .finally(() => {
