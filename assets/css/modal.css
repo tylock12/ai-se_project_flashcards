@@ -79,12 +79,12 @@
 }
 
 .modal_type_error .modal__container {
-  background-color: #f4a89c;
+  background-color: #f0897c;
 }
 
 .modal_type_error .modal__title,
 .modal_type_error .modal__message {
-  color: #fff;
+  color: #1a1a1a;
 }
 
 .modal_type_error .modal__close {
